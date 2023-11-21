@@ -127,26 +127,8 @@ window.onload = function () {
 </script>
       
 <script>
-// window.onload = function() {
-//   initializeLiff('1654370606-geWqlVLk');
-// }
 
 const xurl = "https://script.google.com/macros/s/AKfycbxZf76z2TCF5k2N0-a5WNLG878IGRbMfWdqjbZOYs4xv-3o4FIJ8r5YhtUqJMS4Xsd-/exec?register";
-
-// function initializeLiff(myLiffId) {
-//     liff
-//         .init({
-//             liffId: myLiffId
-//         })
-//         .then(() => {
-//             save();
-//         })
-//         .catch((err) => {
-//           console.log('LIFF Initialization failed ', err);
-//         });
-// }
-
-// var x = document.getElementById("demo");
 
 async function handleFormSubmit() {
   try {
@@ -177,35 +159,6 @@ async function handleFormSubmit() {
     console.error(error);
   }
 }
-  
-// function save() {
-//   liff.getProfile().then(function(profile) {
-//     var uid = profile.userId;
-//     var uname = profile.displayName;
-//     var xos = liff.getOS();
-
-    
-//     x.innerHTML = "Lat: " + position.coords.latitude + 
-//       "<br>Long: " + position.coords.longitude+ 
-//       "<br>userId: " + uid+ 
-//       "<br>displayName: " + uname+
-//       "<br>your OS: " + xos;
-    
-//     var xmlhttp = new XMLHttpRequest();
-//     var theUrl = xurl+"?ctype=In&xos="+xos+"&user="+uid+"&name="+uname+"&lat="+position.coords.latitude+"&long="+position.coords.longitude;
-//     xmlhttp.open('GET', theUrl);
-//     xmlhttp.send();
-//     xmlhttp.onreadystatechange = function() {
-//       if (this.readyState == 4 && this.status == 200) {
-//         var jsonResponse = JSON.parse(this.responseText);
-//       }
-//       alert(jsonResponse.desc);
-//       liff.closeWindow();
-//     }
-//   });  
-// }
-
-
 
 </script>
 
