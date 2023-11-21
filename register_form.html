@@ -87,7 +87,8 @@
 
 						</div>
 				<div class="mb-3 mb-0 text-center">
-          <input type="hidden" id="userId" name="userId">
+          				<input type="hidden" id="userId" name="userId">
+					<input type="hidden" id="action" name="action" value="register">
 					<button type="submit" class="btn btn-primary btn-lg btn-block" onclick="handleFormSubmit()">ลงทะเบียน</button>
 				</div>
 			</form>
@@ -109,7 +110,7 @@
 
 <script>
 window.onload = function () {
-  liff.init({ liffId: '1661343126-bYO1OPow' }).then(() => {
+  liff.init({ liffId: '1655710496-lVbgr7kz' }).then(() => {
     if (liff.isLoggedIn()) {
       liff.getProfile().then((profile) => {
         document.getElementById('userId').value = profile.userId;
@@ -172,32 +173,32 @@ async function handleFormSubmit() {
   }
 }
   
-function save() {
-  liff.getProfile().then(function(profile) {
-    var uid = profile.userId;
-    var uname = profile.displayName;
-    var xos = liff.getOS();
+// function save() {
+//   liff.getProfile().then(function(profile) {
+//     var uid = profile.userId;
+//     var uname = profile.displayName;
+//     var xos = liff.getOS();
 
     
-    x.innerHTML = "Lat: " + position.coords.latitude + 
-      "<br>Long: " + position.coords.longitude+ 
-      "<br>userId: " + uid+ 
-      "<br>displayName: " + uname+
-      "<br>your OS: " + xos;
+//     x.innerHTML = "Lat: " + position.coords.latitude + 
+//       "<br>Long: " + position.coords.longitude+ 
+//       "<br>userId: " + uid+ 
+//       "<br>displayName: " + uname+
+//       "<br>your OS: " + xos;
     
-    var xmlhttp = new XMLHttpRequest();
-    var theUrl = xurl+"?ctype=In&xos="+xos+"&user="+uid+"&name="+uname+"&lat="+position.coords.latitude+"&long="+position.coords.longitude;
-    xmlhttp.open('GET', theUrl);
-    xmlhttp.send();
-    xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        var jsonResponse = JSON.parse(this.responseText);
-      }
-      alert(jsonResponse.desc);
-      liff.closeWindow();
-    }
-  });  
-}
+//     var xmlhttp = new XMLHttpRequest();
+//     var theUrl = xurl+"?ctype=In&xos="+xos+"&user="+uid+"&name="+uname+"&lat="+position.coords.latitude+"&long="+position.coords.longitude;
+//     xmlhttp.open('GET', theUrl);
+//     xmlhttp.send();
+//     xmlhttp.onreadystatechange = function() {
+//       if (this.readyState == 4 && this.status == 200) {
+//         var jsonResponse = JSON.parse(this.responseText);
+//       }
+//       alert(jsonResponse.desc);
+//       liff.closeWindow();
+//     }
+//   });  
+// }
 
 
 
