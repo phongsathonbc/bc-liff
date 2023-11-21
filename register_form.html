@@ -148,12 +148,18 @@ async function handleFormSubmit() {
   try {
     const form = document.getElementById("myForm");
     const formData = new FormData(form);
+	  formData.append('department', $('#department option:selected').val());
   
     // Send the form data to Google Sheets
-    await fetch(xurl, {
+     const response = await fetch(xurl, {
       method: "POST",
       body: formData
     });
+
+	if (!response.ok) {
+		throw new Error(`HTTP error! status: ${response.status}`);
+	}
+	  const data = await response.json();
     
     // Show success message
     Swal.fire({
