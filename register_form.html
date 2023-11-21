@@ -159,23 +159,16 @@ async function handleFormSubmit() {
       method: "POST",
       body: formData
     }).then(response => {
-	console.log(response);
-	});
-
-  const text = await response.text();
-  // return text;
-
-	  console.log(text)
-	  
-    // Show success message
-    Swal.fire({
-      icon: 'success',
-      title: 'สมัครสมาชิกเรียบร้อยแล้ว',
-      text: 'ขอบคุณที่ลงทะเบียน',
-      confirmButtonText: 'ตกลง'
-    }).then(() => {
-      // Close the LIFF window
-      liff.closeWindow();
+	// Show success message
+	Swal.fire({
+		icon: 'success',
+		title: 'สมัครสมาชิกเรียบร้อยแล้ว',
+		text: 'ขอบคุณที่ลงทะเบียน',
+		confirmButtonText: 'ตกลง'
+	}).then(() => {
+		// Close the LIFF window
+		liff.closeWindow();
+    	});
     });
   
     // Reset the form
