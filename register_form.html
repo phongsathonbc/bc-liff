@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <base target="_self">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>ลงทะเบียนระบบ</title>
+
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"/> -->
+	<!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- Google Fonts  -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit:100,300,400,500,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <!-- Custom styles -->
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+    <!-- Alert Modal -->
+   	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css"/> -->
+   	<style type="text/css">
+   		body {
+   			font-family: 'Kanit', sans-serif;
+   		}
+   		input, select, .form-label {
+   			font-family: 'Kanit', sans-serif;
+   			font-weight: 300!important;
+   		}
+   		.btn-block {
+		    width: 100%;
+		}
+		.form-floating>.form-control:not(:placeholder-shown)~label, 
+		.form-floating>.form-select~label {
+		    opacity: .65;
+		    transform: scale(.8) translateY(-0.7rem) translateX(0.5rem);
+		}
+   	</style>
+</head>
+
+<body>
+
+<div class="container">
+	<div class="justify-content-center row">
+		<div class="col-xxl-4 col-xl-5 col-lg-6 col-md-8">
+			<div class="card mt-3">
+
+				<div class="card-header pt-4 pb-4 text-center bg-primary ">
+					<h4 class="text-white text-center mt-0 fw-bold">ลงทะเบียนระบบ</h4>
+				</div>
+				<div class="card-body p-4 ">
+					<form novalidate="" id="myForm">
+						<div class="form-floating mb-3">
+							<input placeholder="กรอกชื่อ" name="name" type="text" id="name" class="form-control form-control-lg">
+							<label for="floatingName">ชื่อเล่น</label>
+						</div>
+						<div class="form-floating mb-3"> 
+							<input placeholder="กรอกเบอร์โทร" name="phone" type="text" id="phone" class="form-control form-control-lg">
+							<label for="floatingPhone">เบอร์โทร</label> 
+						</div>
+						<div class="form-floating mb-4">
+							<select class="form-select form-select-lg" id="department" aria-label="Floating label select">
+								<option selected>เลือกแผนก</option>
+								<option value="AC">AC - Accounting</option>
+								<option value="CB">CB - Civil & Building</option>
+								<option value="EN">EN - Engineering</option>
+								<option value="FO">FO - Front Office</option>
+								<option value="GO">GO - Golf Operations</option>
+								<option value="HK">HK - Housekeeping</option>
+								<option value="HR">HR - Human Resources</option>
+								<option value="SM">SM - Sales & Marketing</option>
+								<option value="IT">IT - Information Technology</option>
+								<option value="LM">LM - Landscape & Maintenance</option>
+								<option value="MS">MSS - Membership Service</option>
+								<option value="PD">PD - Property Development</option>
+								<option value="FB">FB - Food & Beverage / Kiosk</option>
+								<option value="KC">KC - Kitchen</option>
+								<option value="AD">AD - Administration</option>
+								<option value="PS">PS - Proshop</option>
+								<option value="PUR">PUR - Purchasing</option>
+								<option value="LG">LG - Legal & Compliant</option>
+								<option value="SP">SPA - SPA</option>
+								<option value="MN">MN - Mechanic</option>
+							</select>
+							<label for="floatingDepartment">แผนก</label> 
+
+						</div>
+				<div class="mb-3 mb-0 text-center">
+          <input type="hidden" id="userId" name="userId">
+					<button type="submit" class="btn btn-primary btn-lg btn-block" onclick="handleFormSubmit()">ลงทะเบียน</button>
+				</div>
+			</form>
+      <p id="demo"></p>
+		</div>
+	</div>
+
+
+<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+	<!-- Alert Modal -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+	<!-- Custom scripts -->
+    <!-- <script type="text/javascript" src="js/script.js"></script> -->
+
+<script>
+window.onload = function () {
+  liff.init({ liffId: '1661343126-bYO1OPow' }).then(() => {
+    if (liff.isLoggedIn()) {
+      liff.getProfile().then((profile) => {
+        document.getElementById('userId').value = profile.userId;
+      });
+    } else {
+      liff.login();
+    }
+  });
+}
+</script>
+      
+<script>
+// window.onload = function() {
+//   initializeLiff('1654370606-geWqlVLk');
+// }
+
+const xurl = "https://script.google.com/macros/s/AKfycbz-krIX4x26C_hIFECOy5i0EvLPIMIeKiSPD4kswFJXznuGFE4/exec";
+
+// function initializeLiff(myLiffId) {
+//     liff
+//         .init({
+//             liffId: myLiffId
+//         })
+//         .then(() => {
+//             save();
+//         })
+//         .catch((err) => {
+//           console.log('LIFF Initialization failed ', err);
+//         });
+// }
+
+// var x = document.getElementById("demo");
+
+async function handleFormSubmit() {
+  try {
+    const form = document.getElementById("myForm");
+    const formData = new FormData(form);
+  
+    // Send the form data to Google Sheets
+    await fetch(xurl, {
+      method: "POST",
+      body: formData
+    });
+    
+    // Show success message
+    Swal.fire({
+      icon: 'success',
+      title: 'สมัครสมาชิกเรียบร้อยแล้ว',
+      text: 'ขอบคุณที่ลงทะเบียน',
+      confirmButtonText: 'ตกลง'
+    }).then(() => {
+      // Close the LIFF window
+      liff.closeWindow();
+    });
+  
+    // Reset the form
+    form.reset();
+  } catch (error) {
+    console.error(error);
+  }
+}
+  
+function save() {
+  liff.getProfile().then(function(profile) {
+    var uid = profile.userId;
+    var uname = profile.displayName;
+    var xos = liff.getOS();
+
+    
+    x.innerHTML = "Lat: " + position.coords.latitude + 
+      "<br>Long: " + position.coords.longitude+ 
+      "<br>userId: " + uid+ 
+      "<br>displayName: " + uname+
+      "<br>your OS: " + xos;
+    
+    var xmlhttp = new XMLHttpRequest();
+    var theUrl = xurl+"?ctype=In&xos="+xos+"&user="+uid+"&name="+uname+"&lat="+position.coords.latitude+"&long="+position.coords.longitude;
+    xmlhttp.open('GET', theUrl);
+    xmlhttp.send();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var jsonResponse = JSON.parse(this.responseText);
+      }
+      alert(jsonResponse.desc);
+      liff.closeWindow();
+    }
+  });  
+}
+
+
+
+</script>
+
+<script type="text/javascript">
+ // document.addEventListener('DOMContentLoaded', function() {
+ //    var elems = document.querySelectorAll('select');
+ //  var instance = M.FormSelect.getInstance(elem);
+ //  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
+
+</script>
+</body>
+</html>
