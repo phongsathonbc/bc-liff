@@ -88,6 +88,8 @@
 						</div>
 				<div class="mb-3 mb-0 text-center">
           				<input type="hidden" id="userId" name="userId">
+					<input type="hidden" id="displayName" name="displayName">
+					<input type="hidden" id="pictureUrl" name="pictureUrl">
 					<input type="hidden" id="action" name="action" value="register">
 					<button type="submit" class="btn btn-primary btn-lg btn-block" onclick="handleFormSubmit()">ลงทะเบียน</button>
 				</div>
@@ -114,6 +116,8 @@ window.onload = function () {
     if (liff.isLoggedIn()) {
       liff.getProfile().then((profile) => {
         document.getElementById('userId').value = profile.userId;
+	document.getElementById('displayName').value = profile.displayName;
+	document.getElementById('pictureUrl').value = profile.pictureUrl;
       });
     } else {
       liff.login();
